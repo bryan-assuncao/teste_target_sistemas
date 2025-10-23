@@ -17,6 +17,15 @@ public class Solucao_03 {
 
     public static void main(String[] args) {
 
+        System.out.println("""
+                \n3) Dado um vetor que guarda o valor de faturamento diário de uma distribuidora, faça um programa, na linguagem que desejar, que calcule e retorne:
+                • O menor valor de faturamento ocorrido em um dia do mês;
+                • O maior valor de faturamento ocorrido em um dia do mês;
+                • Número de dias no mês em que o valor de faturamento diário foi superior à média mensal.
+                
+                IMPORTANTE:
+                a) Usar o json ou xml disponível como fonte dos dados do faturamento mensal;""");
+
         Locale localeBR = new Locale("pt", "BR");
         NumberFormat formatadorMoeda = NumberFormat.getCurrencyInstance(localeBR);
 
@@ -60,12 +69,7 @@ public class Solucao_03 {
         double mediaMensal = diasComFaturamento.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
         long diasAcimaDaMedia = diasComFaturamento.stream().filter(valor -> valor > mediaMensal).count();
 
-        System.out.println("--- Análise de Faturamento Mensal ---");
-        System.out.println("Dados processados do arquivo: " + "dados (2).xml");
-        System.out.println("(Ignorando dias com faturamento R$ 0,00 para min/max/média)");
-        System.out.println("-----------------------------------------");
-
-        System.out.println("Menor valor de faturamento: " + formatadorMoeda.format(menorValor));
+        System.out.println("\nMenor valor de faturamento: " + formatadorMoeda.format(menorValor));
         System.out.println("Maior valor de faturamento: " + formatadorMoeda.format(maiorValor));
         System.out.println("Média mensal: " + formatadorMoeda.format(mediaMensal));
         System.out.println("Dias com faturamento acima da média: " + diasAcimaDaMedia);
